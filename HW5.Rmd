@@ -144,6 +144,8 @@ simulation_result %>%
     caption = "Simulation iterations: 10000"
   )
 ```
+
+
 ```{r}
 
 ```
