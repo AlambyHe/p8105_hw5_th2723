@@ -19,6 +19,8 @@ library(tidyverse)
     ## ✖ dplyr::lag()    masks stats::lag()
 
 ``` r
+library(dplyr)
+
 set.seed(10)
 
 iris_with_missing = iris %>% 
@@ -26,7 +28,7 @@ iris_with_missing = iris %>%
   mutate(Species = as.character(Species)) %>% 
   janitor:: clean_names() 
 
-view(iris_with_missing)
+view(iris_with_missing) 
 ```
 
 ##### Problem 1
@@ -40,8 +42,10 @@ iris_with_missing_mean = function(x){
     x = ifelse(is.na(x), "virginica", x)
   }
 }
-iris_with_missing2 = map_df(.x = iris_with_missing, ~ iris_with_missing_mean(.x))
-view(iris_with_missing2)
+iris_with_missing2 = map_df(.x = iris_with_missing, ~ iris_with_missing_mean(.x)) %>% 
+#view(iris_with_missing2) 
+  head(10) %>% 
+  knitr::kable()
 ```
 
 ##### Problem 2
@@ -300,7 +304,9 @@ data %>%
   geom_path() 
 ```
 
-![](HW5_files/figure-markdown_github/Problem2-1.png) \#\#\#\#\#Problem3
+![](HW5_files/figure-markdown_github/Problem2-1.png)
+
+##### Problem3
 
 ``` r
 library(broom)
@@ -370,25 +376,86 @@ for (i in 1:6) {
 #view(tempList)
 
 simulation_result = 
-  tibble(betal1s = c(0:6),
+  tibble(beta1s = c(0:6),
          proportion = c(tempList[[1]],tempList[[2]],tempList[[3]],tempList[[4]],tempList[[5]],tempList[[6]],tempList[[7]]))
-
-simulation_result = as.data.frame(simulation_result)
-simulation_result = simulation_result %>%
-  mutate(betal1s = as.numeric(betal1s))
 #view(simulation_result)
 
-
 simulation_result %>%
-  ggplot(aes(x=betal1s, y = proportion)) +
+  ggplot(aes(x=beta1s, y = proportion)) +
   geom_point() +
   geom_line()+
   scale_x_continuous(breaks = seq(0, 6, by=1)) +
   labs(
     x = "True Beta1", y = "Power",
-    title = "Association between effect size and power",
-    caption = "Simulation iterations: 10000"
+    title = "Association between effect size and power"
   )
 ```
 
 ![](HW5_files/figure-markdown_github/unnamed-chunk-3-1.png)
+
+``` r
+average_estimate = function(x) {
+  temp = 
+  x %>% 
+  mutate(
+    average_beta1_hat = mean(beta1_hat) 
+  ) %>%
+  select(average_beta1_hat) %>%
+  distinct()
+  
+  temp$average_beta1_hat
+}
+tempList2 = vector("list", 7)
+tempList2[[1]] = average_estimate(sim_result)
+for (i in 1:6) {
+  tempList2[[i+1]] = average_estimate(sim_results[[i]])
+}
+#view(tempList2)
+
+simulation_result2 = 
+  tibble(beta1s = c(0:6),
+         average_beta1_hat = c(tempList2[[1]],tempList2[[2]],tempList2[[3]],tempList2[[4]],tempList2[[5]],tempList2[[6]],tempList2[[7]]))
+view(simulation_result2)
+```
+
+``` r
+average_estimate_rej = function(x) {
+  temp = 
+  x %>% 
+  filter(pvalue <= 0.05) %>% 
+  mutate(
+    average_beta1_hat = mean(beta1_hat) 
+  ) %>%
+  select(average_beta1_hat) %>%
+  distinct()
+  
+  temp$average_beta1_hat
+}
+tempList3 = vector("list", 7)
+tempList3[[1]] = average_estimate_rej(sim_result)
+for (i in 1:6) {
+  tempList3[[i+1]] = average_estimate_rej(sim_results[[i]])
+}
+#view(tempList3)
+
+simulation_result3 = 
+  tibble(beta1s = c(0:6),
+         average_beta1_hat = c(tempList3[[1]],tempList3[[2]],tempList3[[3]],tempList3[[4]],tempList3[[5]],tempList3[[6]],tempList3[[7]]))
+view(simulation_result3)
+```
+
+``` r
+ggplot(simulation_result2, aes(x=beta1s)) +
+  geom_point(data = simulation_result2, aes(y=average_beta1_hat)) +
+  geom_point(data = simulation_result3, aes(y=average_beta1_hat)) +
+  geom_line(data = simulation_result2, aes(y=average_beta1_hat, color = 'All samples')) +
+  geom_line(data = simulation_result3, aes(y=average_beta1_hat, color = 'Samples with the null hypothesis rejected')) +
+  scale_x_continuous(breaks = seq(0, 6, by = 1)) +
+  scale_y_continuous(breaks = seq(0, 6, by = 0.2)) +
+  labs(
+    x= "True Beta1", y = "Average Beta1 Estimate",
+    title = "Association between average beta1 estimate and true beta1"
+  )
+```
+
+![](HW5_files/figure-markdown_github/unnamed-chunk-6-1.png)
