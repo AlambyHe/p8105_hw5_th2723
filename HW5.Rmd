@@ -37,8 +37,9 @@ iris_with_missing2 = map_df(.x = iris_with_missing, ~ iris_with_missing_mean(.x)
 #view(iris_with_missing2) 
 knitr::kable(head(iris_with_missing2))
 ```
-#####Problem 2
-```{r Problem2, eval=FALSE}
+
+
+```{r Problem2}
 files = list.files(path = "./data")
 data = data_frame(files = files) %>% 
     mutate(file_contents = map(files, ~read_csv(file.path("./data", .)))) %>%
@@ -61,7 +62,8 @@ data %>%
   geom_path() 
 ```
 In the experiment group, as time progresses, the value of measurement varies between -2.5 and 5 without a general trend (i.e. an increasing trend or a decreasing trend). However, in the experiment group, we can see that the value of measurement has an increasing trend as time progresses. 
-#####Problem3
+
+
 ```{r Problem3}
 library(broom)
 linear_regression = function (n, beta0 = 2, beta1) {
