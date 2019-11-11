@@ -310,7 +310,7 @@ data %>%
   geom_path() 
 ```
 
-![](HW5_files/figure-markdown_github/Problem2-1.png) In the experiment group, as time progresses, the value of measurement varies between -2.5 and 5 without a general trend (i.e. an increasing trend or a decreasing trend). However, in the experiment group, we can see that the value of measurement has an increasing trend as time progresses.
+![](HW5_files/figure-markdown_github/Problem2-1.png) In the control group, as time progresses, the value of measurement varies between -2.5 and 5 without a general trend (i.e. an increasing trend or a decreasing trend). However, in the experiment group, we can see that the value of measurement has an increasing trend as time progresses.
 
 ``` r
 library(broom)
