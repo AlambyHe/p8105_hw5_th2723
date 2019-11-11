@@ -7,14 +7,14 @@ Tianhui He
 library(tidyverse)
 ```
 
-    ## ── Attaching packages ────────────────────────────────────────── tidyverse 1.2.1 ──
+    ## ── Attaching packages ───────────────────────────────────────── tidyverse 1.2.1 ──
 
     ## ✔ ggplot2 3.2.1     ✔ purrr   0.3.2
     ## ✔ tibble  2.1.3     ✔ dplyr   0.8.3
     ## ✔ tidyr   1.0.0     ✔ stringr 1.3.1
     ## ✔ readr   1.1.1     ✔ forcats 0.4.0
 
-    ## ── Conflicts ───────────────────────────────────────────── tidyverse_conflicts() ──
+    ## ── Conflicts ──────────────────────────────────────────── tidyverse_conflicts() ──
     ## ✖ dplyr::filter() masks stats::filter()
     ## ✖ dplyr::lag()    masks stats::lag()
 
@@ -47,15 +47,14 @@ iris_with_missing2 = map_df(.x = iris_with_missing, ~ iris_with_missing_mean(.x)
 knitr::kable(head(iris_with_missing2))
 ```
 
-|        sepal\_length|  sepal\_width|  petal\_length|  petal\_width| species   |
-|--------------------:|-------------:|--------------:|-------------:|:----------|
-|                  5.1|           3.5|       1.400000|      0.200000| setosa    |
-|                  4.9|           3.0|       1.400000|      0.200000| setosa    |
-|                  4.7|           3.2|       3.836923|      0.200000| virginica |
-|                  4.6|           3.1|       1.500000|      0.200000| virginica |
-|                  5.0|           3.6|       1.400000|      1.243846| setosa    |
-|                  5.4|           3.9|       1.700000|      1.243846| setosa    |
-|  \#\#\#\#\#Problem 2|              |               |              |           |
+|  sepal\_length|  sepal\_width|  petal\_length|  petal\_width| species   |
+|--------------:|-------------:|--------------:|-------------:|:----------|
+|            5.1|           3.5|       1.400000|      0.200000| setosa    |
+|            4.9|           3.0|       1.400000|      0.200000| setosa    |
+|            4.7|           3.2|       3.836923|      0.200000| virginica |
+|            4.6|           3.1|       1.500000|      0.200000| virginica |
+|            5.0|           3.6|       1.400000|      1.243846| setosa    |
+|            5.4|           3.9|       1.700000|      1.243846| setosa    |
 
 ``` r
 files = list.files(path = "./data")
@@ -74,13 +73,244 @@ pivot_longer(week_1:week_8, names_to = "week",
 mutate_all(~gsub("week_", "", .)) %>% 
 mutate(week = as.numeric(week)) %>% 
 mutate(measurement = as.numeric(measurement))
+```
 
+    ## Warning: `data_frame()` is deprecated, use `tibble()`.
+    ## This warning is displayed once per session.
+
+    ## Parsed with column specification:
+    ## cols(
+    ##   week_1 = col_double(),
+    ##   week_2 = col_double(),
+    ##   week_3 = col_double(),
+    ##   week_4 = col_double(),
+    ##   week_5 = col_double(),
+    ##   week_6 = col_double(),
+    ##   week_7 = col_double(),
+    ##   week_8 = col_double()
+    ## )
+    ## Parsed with column specification:
+    ## cols(
+    ##   week_1 = col_double(),
+    ##   week_2 = col_double(),
+    ##   week_3 = col_double(),
+    ##   week_4 = col_double(),
+    ##   week_5 = col_double(),
+    ##   week_6 = col_double(),
+    ##   week_7 = col_double(),
+    ##   week_8 = col_double()
+    ## )
+    ## Parsed with column specification:
+    ## cols(
+    ##   week_1 = col_double(),
+    ##   week_2 = col_double(),
+    ##   week_3 = col_double(),
+    ##   week_4 = col_double(),
+    ##   week_5 = col_double(),
+    ##   week_6 = col_double(),
+    ##   week_7 = col_double(),
+    ##   week_8 = col_double()
+    ## )
+    ## Parsed with column specification:
+    ## cols(
+    ##   week_1 = col_double(),
+    ##   week_2 = col_double(),
+    ##   week_3 = col_double(),
+    ##   week_4 = col_double(),
+    ##   week_5 = col_double(),
+    ##   week_6 = col_double(),
+    ##   week_7 = col_double(),
+    ##   week_8 = col_double()
+    ## )
+    ## Parsed with column specification:
+    ## cols(
+    ##   week_1 = col_double(),
+    ##   week_2 = col_double(),
+    ##   week_3 = col_double(),
+    ##   week_4 = col_double(),
+    ##   week_5 = col_double(),
+    ##   week_6 = col_double(),
+    ##   week_7 = col_double(),
+    ##   week_8 = col_double()
+    ## )
+    ## Parsed with column specification:
+    ## cols(
+    ##   week_1 = col_double(),
+    ##   week_2 = col_double(),
+    ##   week_3 = col_double(),
+    ##   week_4 = col_double(),
+    ##   week_5 = col_double(),
+    ##   week_6 = col_double(),
+    ##   week_7 = col_double(),
+    ##   week_8 = col_double()
+    ## )
+    ## Parsed with column specification:
+    ## cols(
+    ##   week_1 = col_double(),
+    ##   week_2 = col_double(),
+    ##   week_3 = col_double(),
+    ##   week_4 = col_double(),
+    ##   week_5 = col_double(),
+    ##   week_6 = col_double(),
+    ##   week_7 = col_double(),
+    ##   week_8 = col_double()
+    ## )
+    ## Parsed with column specification:
+    ## cols(
+    ##   week_1 = col_double(),
+    ##   week_2 = col_double(),
+    ##   week_3 = col_double(),
+    ##   week_4 = col_double(),
+    ##   week_5 = col_double(),
+    ##   week_6 = col_double(),
+    ##   week_7 = col_double(),
+    ##   week_8 = col_double()
+    ## )
+    ## Parsed with column specification:
+    ## cols(
+    ##   week_1 = col_double(),
+    ##   week_2 = col_double(),
+    ##   week_3 = col_double(),
+    ##   week_4 = col_double(),
+    ##   week_5 = col_double(),
+    ##   week_6 = col_double(),
+    ##   week_7 = col_double(),
+    ##   week_8 = col_double()
+    ## )
+    ## Parsed with column specification:
+    ## cols(
+    ##   week_1 = col_double(),
+    ##   week_2 = col_double(),
+    ##   week_3 = col_double(),
+    ##   week_4 = col_double(),
+    ##   week_5 = col_double(),
+    ##   week_6 = col_double(),
+    ##   week_7 = col_double(),
+    ##   week_8 = col_double()
+    ## )
+    ## Parsed with column specification:
+    ## cols(
+    ##   week_1 = col_double(),
+    ##   week_2 = col_double(),
+    ##   week_3 = col_double(),
+    ##   week_4 = col_double(),
+    ##   week_5 = col_double(),
+    ##   week_6 = col_double(),
+    ##   week_7 = col_double(),
+    ##   week_8 = col_double()
+    ## )
+    ## Parsed with column specification:
+    ## cols(
+    ##   week_1 = col_double(),
+    ##   week_2 = col_double(),
+    ##   week_3 = col_double(),
+    ##   week_4 = col_double(),
+    ##   week_5 = col_double(),
+    ##   week_6 = col_double(),
+    ##   week_7 = col_double(),
+    ##   week_8 = col_double()
+    ## )
+    ## Parsed with column specification:
+    ## cols(
+    ##   week_1 = col_double(),
+    ##   week_2 = col_double(),
+    ##   week_3 = col_double(),
+    ##   week_4 = col_double(),
+    ##   week_5 = col_double(),
+    ##   week_6 = col_double(),
+    ##   week_7 = col_double(),
+    ##   week_8 = col_double()
+    ## )
+
+    ## Parsed with column specification:
+    ## cols(
+    ##   week_1 = col_double(),
+    ##   week_2 = col_double(),
+    ##   week_3 = col_double(),
+    ##   week_4 = col_double(),
+    ##   week_5 = col_double(),
+    ##   week_6 = col_double(),
+    ##   week_7 = col_integer(),
+    ##   week_8 = col_double()
+    ## )
+
+    ## Parsed with column specification:
+    ## cols(
+    ##   week_1 = col_double(),
+    ##   week_2 = col_double(),
+    ##   week_3 = col_double(),
+    ##   week_4 = col_double(),
+    ##   week_5 = col_double(),
+    ##   week_6 = col_double(),
+    ##   week_7 = col_double(),
+    ##   week_8 = col_double()
+    ## )
+    ## Parsed with column specification:
+    ## cols(
+    ##   week_1 = col_double(),
+    ##   week_2 = col_double(),
+    ##   week_3 = col_double(),
+    ##   week_4 = col_double(),
+    ##   week_5 = col_double(),
+    ##   week_6 = col_double(),
+    ##   week_7 = col_double(),
+    ##   week_8 = col_double()
+    ## )
+    ## Parsed with column specification:
+    ## cols(
+    ##   week_1 = col_double(),
+    ##   week_2 = col_double(),
+    ##   week_3 = col_double(),
+    ##   week_4 = col_double(),
+    ##   week_5 = col_double(),
+    ##   week_6 = col_double(),
+    ##   week_7 = col_double(),
+    ##   week_8 = col_double()
+    ## )
+    ## Parsed with column specification:
+    ## cols(
+    ##   week_1 = col_double(),
+    ##   week_2 = col_double(),
+    ##   week_3 = col_double(),
+    ##   week_4 = col_double(),
+    ##   week_5 = col_double(),
+    ##   week_6 = col_double(),
+    ##   week_7 = col_double(),
+    ##   week_8 = col_double()
+    ## )
+    ## Parsed with column specification:
+    ## cols(
+    ##   week_1 = col_double(),
+    ##   week_2 = col_double(),
+    ##   week_3 = col_double(),
+    ##   week_4 = col_double(),
+    ##   week_5 = col_double(),
+    ##   week_6 = col_double(),
+    ##   week_7 = col_double(),
+    ##   week_8 = col_double()
+    ## )
+    ## Parsed with column specification:
+    ## cols(
+    ##   week_1 = col_double(),
+    ##   week_2 = col_double(),
+    ##   week_3 = col_double(),
+    ##   week_4 = col_double(),
+    ##   week_5 = col_double(),
+    ##   week_6 = col_double(),
+    ##   week_7 = col_double(),
+    ##   week_8 = col_double()
+    ## )
+
+    ## Warning: `cols` is now required.
+    ## Please use `cols = c(file_contents)`
+
+``` r
 data %>%
   ggplot(aes(x = week, y = measurement , color = group, group = subject_id)) + 
   geom_path() 
 ```
 
-In the experiment group, as time progresses, the value of measurement varies between -2.5 and 5 without a general trend (i.e. an increasing trend or a decreasing trend). However, in the experiment group, we can see that the value of measurement has an increasing trend as time progresses. \#\#\#\#\#Problem3
+![](HW5_files/figure-markdown_github/Problem2-1.png) In the experiment group, as time progresses, the value of measurement varies between -2.5 and 5 without a general trend (i.e. an increasing trend or a decreasing trend). However, in the experiment group, we can see that the value of measurement has an increasing trend as time progresses.
 
 ``` r
 library(broom)
